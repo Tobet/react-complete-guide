@@ -31,6 +31,11 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    console.log("In App.js");
+    console.log(expenses);
+  };
+
   // what is happening under the hood with below syntax
   // older versions of react needed React import where jsx was used
   // return React.createElement(
@@ -42,7 +47,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );

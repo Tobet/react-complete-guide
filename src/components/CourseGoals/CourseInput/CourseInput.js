@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../UI/Button/Button";
 import styles from "./CourseInput.module.css";
-import styled from "styled-components";
 
 // nested component - we use it only here
 // const FormControl = styled.div`

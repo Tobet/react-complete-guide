@@ -1,10 +1,10 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -29,11 +29,18 @@ const App = () => {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
 
   const addExpenseHandler = (expense) => {
-    console.log("In App.js");
-    console.log(expenses);
+    setExpenses((prevExpenses) => {
+      return [...prevExpenses, expense];
+    });
+  };
+
+  const resetExpenseHandler = (expenseId) => {
+    const expenseToUpdateIndex = expenses.findIndex((e) => e.id === expenseId);
+    expenses[expenseToUpdateIndex].amount = 0;
+    setExpenses(expenses);
   };
 
   // what is happening under the hood with below syntax
@@ -48,7 +55,7 @@ const App = () => {
   return (
     <div className="App">
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+      <Expenses items={expenses} onResetExpense={resetExpenseHandler} />
     </div>
   );
 };

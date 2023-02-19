@@ -40,7 +40,7 @@ const App = () => {
   const resetExpenseHandler = (expenseId) => {
     const expenseToUpdateIndex = expenses.findIndex((e) => e.id === expenseId);
     expenses[expenseToUpdateIndex].amount = 0;
-    setExpenses(expenses);
+    setExpenses([...expenses]);
   };
 
   // what is happening under the hood with below syntax

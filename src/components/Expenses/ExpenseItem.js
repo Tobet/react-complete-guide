@@ -7,7 +7,14 @@ import "./ExpenseItem.css";
 // stateless | presentational | dumb component
 const ExpenseItem = (props) => {
 
-  const clickHandler = (event) => {
+  const [title, setTitle] = useState(props.title);
+
+  const clickChangeTitleHandler = (event) => {
+    setTitle("Updated!");
+    console.log(title);
+  };
+
+  const clickResetAmountButton = (event) => {
     props.onResetExpense(props.id);
   };
 
@@ -15,10 +22,11 @@ const ExpenseItem = (props) => {
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
-      <button type="button" onClick={clickHandler}>Reset</button>
+      <button type="button" onClick={clickChangeTitleHandler}>Change title</button>
+      <button type="button" onClick={clickResetAmountButton}>Reset amount</button>
     </Card>
   );
 };
